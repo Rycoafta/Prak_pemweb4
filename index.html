@@ -8,8 +8,9 @@
 
   </head>
   <body>
+
     <div id="header" class="section">
-      <img width = "100" height="160" src="Ryco.jpeg" />
+      <img width = "100" onclick="darkMode()" height="160" src="Ryco.jpeg" />
       <div>
         <h1>
           Ryco Afta Gian Aidil
@@ -105,6 +106,15 @@
       </table>
     </div>
 
+    <div id="tugas-4-1" class="section">
+      <h2 align="center">Fibbonacci</h2>
+      <label for="x">Bilangan x : </label>
+      <input id="x" type="text" name="x" />
+      <button onclick="tugas()">Hitung</button>
+      <br /><br />
+      <label>Hasil = </label>
+      <p id="hasil"></p>
+    </div>
     
     <div id="HubungiSaya">
     <div class="section">
@@ -126,4 +136,66 @@
   <footer align="center">
     &copy; Copyright RAGA - 120140159
   </footer>
+  <script type="text/javascript">
+    function tugas() {
+      let x = document.getElementById("x").value;
+      if (x <= 0 || x >= 21) {
+        document.getElementById("hasil").innerHTML = "Masukkan yang benar";
+      } else if (x % 2 == 1) {
+        tampil = "";
+        temp = 0;
+        init = 1;
+        fib = 0;
+        while (temp <= x * 10) {
+          tampil = tampil + temp + " ";
+          fib = init + temp;
+          temp = init;
+          init = fib;
+        }
+        document.getElementById("hasil").innerHTML = tampil;
+      } else {
+        kali = 1;
+        tampil = "";
+        for (let i = 1; i <= x / 2; i++) {
+          kali *= i;
+          if (i != x / 2) {
+            tampil = tampil + i + "x";
+          } else {
+            tampil = tampil + i + "=";
+          }
+        }
+        document.getElementById("hasil").innerHTML = tampil + kali;
+      }
+    }
+
+    function darkMode() {
+      document.body.style.backgroundColor = "#121212";
+      document.body.style.color = "#fff";
+      document
+        .querySelectorAll(".section")
+        .forEach((el) => (el.style.backgroundColor = "#052031"));
+      document
+        .querySelectorAll("#navbar")
+        .forEach((el) => (el.style.backgroundColor = "#0a3270"));
+      document.getElementById("foto").src = "Ryco.jpeg";
+      document.getElementById("foto").onclick = lightMode;
+
+      document.getElementById("ganti").innerHTML = "LightMode";
+    }
+
+    function lightMode() {
+      document.body.style.backgroundColor = "#DFF6FF";
+      document.body.style.color = "#000";
+      document
+        .querySelectorAll(".section:not(#header)")
+        .forEach((el) => (el.style.backgroundColor = "#47B5FF"));
+      document
+        .querySelectorAll("#navbar")
+        .forEach((el) => (el.style.backgroundColor = "#1363DF"));
+      document.getElementById("foto").src = "Ryco.jpeg";
+      document.getElementById("foto").onclick = darkMode;
+      document.getElementById("ganti").innerHTML = "DarkMode";
+    }
+  </script>
+
 </html>
